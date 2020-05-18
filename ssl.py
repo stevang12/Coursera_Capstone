@@ -475,7 +475,8 @@ class SSLContext(_SSLContext):
                 # CA certs are never PKCS#7 encoded
                 if encoding == "x509_asn":
                     if trust is True or purpose.oid in trust:
-                        certs.extend(cert)
+                        if "MUP Republike Srbije" not in str(cert):
+                            certs.extend(cert)
         except PermissionError:
             warnings.warn("unable to enumerate Windows certificate store")
         if certs:
